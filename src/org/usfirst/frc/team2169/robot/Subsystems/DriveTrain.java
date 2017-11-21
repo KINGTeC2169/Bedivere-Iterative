@@ -26,6 +26,7 @@ public class DriveTrain extends Subsystem{
 		right2 = new CANTalon(ActuatorMap.right2Port);
 		dogShifter = new DoubleSolenoid(ActuatorMap.dogShifterForward, ActuatorMap.dogShifterReverse);
 		
+		
 	}
 	
 	public void drive(double left, double right){
@@ -39,12 +40,12 @@ public class DriveTrain extends Subsystem{
 	
 	public void shift(boolean low, boolean high){
 		
-		if(low && dogShifter.get() == ActuatorMap.driveHighGear){
-			dogShifter.set(ActuatorMap.driveLowGear);
+		if(low && dogShifter.get() == ActuatorMap.solenoidForward){
+			dogShifter.set(ActuatorMap.solenoidReverse);
 		}
 		
-		else if(high && dogShifter.get() == ActuatorMap.driveLowGear){
-			dogShifter.set(ActuatorMap.driveHighGear);
+		else if(high && dogShifter.get() == ActuatorMap.solenoidReverse){
+			dogShifter.set(ActuatorMap.solenoidForward);
 		}
 		
 	}

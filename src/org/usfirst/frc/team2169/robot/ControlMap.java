@@ -19,6 +19,9 @@ public class ControlMap {
 		int shiftHighRight = 2;
 		int shiftLowRight = 3;
 		
+		//secondary
+		int HumanPlayer = 3;
+		
 	
 	
 	Joystick primaryLeft;
@@ -42,29 +45,21 @@ public class ControlMap {
 	}
 	
 	public boolean highShift(){
-		if (primaryLeft.getRawButton(shiftHighLeft) || primaryRight.getRawButton(shiftHighRight)){
-			
-			return true;
-		}
 		
-		else{
-			
-			return false;
-		}
-		
+		if (primaryLeft.getRawButton(shiftHighLeft) || primaryRight.getRawButton(shiftHighRight)) return true;
+		else return false;
 	}
 	
 	public boolean lowShift(){
-	if (primaryLeft.getRawButton(shiftLowLeft) || primaryRight.getRawButton(shiftLowRight)){
 			
-			return true;
-		}
-		
-		else{
-			
-			return false;
-		}
-		
+		if (primaryLeft.getRawButton(shiftLowLeft) || primaryRight.getRawButton(shiftLowRight)) return true;		
+		else return false;	
 	}
+	
+	public boolean humanShift(){
+		return secondary.getRawButton(HumanPlayer);
+	}
+	
+	
 	
 }
