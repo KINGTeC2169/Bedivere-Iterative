@@ -21,11 +21,12 @@ public class ControlMap {
 		
 		//secondary
 		int HumanPlayer = 3;
-		
+		int IntakeAxis =  1;
+		int DoorButton = 4;
 	
 	
 	Joystick primaryLeft;
-	Joystick primaryRight;
+	Joystick primaryRight; 
 	Joystick secondary;
 	
 	public ControlMap(){
@@ -58,6 +59,15 @@ public class ControlMap {
 	
 	public boolean humanShift(){
 		return secondary.getRawButton(HumanPlayer);
+	}
+	
+	public double intake(){
+		return secondary.getRawAxis(IntakeAxis);
+	}
+	
+	public boolean doors(){
+		return secondary.getRawButton(DoorButton);
+		
 	}
 	
 	

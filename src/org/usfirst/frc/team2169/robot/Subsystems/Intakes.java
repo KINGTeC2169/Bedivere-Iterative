@@ -21,13 +21,13 @@ public class Intakes extends Subsystem{
 	
 	
 	//Method to run intake
-	public void Intake(double Speed){
+	public void intake(double Speed){
 		intake.set(Speed);
 		
 	}
 	
 	//Method to flip solenoids
-	public void HumanPlayerShift(boolean low, boolean high){			
+	public void humanPlayerShift(boolean low, boolean high){			
 		if(low && HumanPlayer.get() == ActuatorMap.solenoidForward){
 			HumanPlayer.set(ActuatorMap.solenoidReverse);
 		}
