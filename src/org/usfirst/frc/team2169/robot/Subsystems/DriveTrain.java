@@ -24,7 +24,7 @@ public class DriveTrain extends Subsystem{
 		left2 = new CANTalon(ActuatorMap.left2Port);
 		right1 = new CANTalon(ActuatorMap.right1Port);
 		right2 = new CANTalon(ActuatorMap.right2Port);
-		dogShifter = new DoubleSolenoid(ActuatorMap.dogShifterForward, ActuatorMap.dogShifterReverse);
+		dogShifter = new DoubleSolenoid(ActuatorMap.compressorPort, ActuatorMap.dogShifterForward, ActuatorMap.dogShifterReverse);
 		
 		
 	}

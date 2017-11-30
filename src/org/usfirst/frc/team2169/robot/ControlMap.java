@@ -20,9 +20,11 @@ public class ControlMap {
 		int shiftLowRight = 3;
 		
 		//secondary
-		int HumanPlayer = 3;
+		int HangerButton = 8;
+		int HumanPlayer = 5;
 		int IntakeAxis =  1;
 		int DoorButton = 4;
+		int SliderAxis = 4;
 	
 	
 	Joystick primaryLeft;
@@ -38,11 +40,11 @@ public class ControlMap {
 	}
 	
 	public double leftThrottle(){
-		return primaryLeft.getRawAxis(0);
+		return primaryLeft.getRawAxis(1);
 	}
 	
 	public double rightThrottle(){
-		return primaryRight.getRawAxis(0);
+		return primaryRight.getRawAxis(1);
 	}
 	
 	public boolean highShift(){
@@ -70,6 +72,13 @@ public class ControlMap {
 		
 	}
 	
+	public boolean hanger(){
+		return secondary.getRawButton(HangerButton);
+	}
+	
+	public double sliderAxis(){
+		return secondary.getRawAxis(SliderAxis);
+	}
 	
 	
 }

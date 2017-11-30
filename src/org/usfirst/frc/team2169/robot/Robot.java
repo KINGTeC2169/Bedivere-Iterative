@@ -1,30 +1,55 @@
 package org.usfirst.frc.team2169.robot;
-
+import org.usfirst.frc.team2169.robot.Subsystems.Superstructure;
 import org.usfirst.frc.team2169.robot.Subsystems.DriveTrain;
 import org.usfirst.frc.team2169.robot.Subsystems.Doors;
 import org.usfirst.frc.team2169.robot.Subsystems.Intakes;
+import org.usfirst.frc.team2169.robot.Subsystems.Hanger;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.*;
 
+
+/*Todo:
+ * 
+ * make it compile and work on robot
+ * 
+ * gyro
+ * 
+ * Auto init and package structure
+ * 
+ * Auto Commands
+ * 
+ * Pathfinder
+ * 
+ * SliderPID 
+ * 
+ * vision communication
+ * 
+ */
 public class Robot extends IterativeRobot {
 
-	
+	Hanger hanger;
 	DriveTrain drive;
 	ControlMap controls;
 	Intakes intakes;
 	Doors doors;
+	Superstructure superstructure;
 
 	@Override
 	public void robotInit() {
 		
+		
 		try{
 			
+			hanger = new Hanger();
+			superstructure = new Superstructure();
 			intakes = new Intakes();
 			drive = new DriveTrain();
 			controls = new ControlMap();
 			doors = new Doors();
+			
+			superstructure.startCompressor();
+			intakes.pancakes(true);
 			
 		}
 		
@@ -39,11 +64,12 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
-
+		
 	}
 
 	@Override
 	public void autonomousPeriodic() {
+	
 
 	}
 
@@ -54,11 +80,16 @@ public class Robot extends IterativeRobot {
 			intakes.humanPlayerShift(!controls.humanShift(), controls.humanShift());
 			intakes.intake(controls.intake());
 			
-			doors.doorShift(controls.doors());
+			hanger.go(0.8, controls.hanger());
 			
+			doors.doorShift(controls.doors());
+			doors.runDoors(controls.sliderAxis());
 			
 			drive.drive(controls.leftThrottle(), controls.rightThrottle());
 			drive.shift(controls.lowShift(), controls.highShift());
+			
+			SmartDashboard.putNumber("chef", controls.leftThrottle());
+			SmartDashboard.putNumber("big", controls.rightThrottle());
 			
 		}
 		catch(Exception e){
