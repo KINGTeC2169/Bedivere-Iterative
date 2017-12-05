@@ -40,11 +40,12 @@ public class DriveTrain extends Subsystem{
 	
 	public void shift(boolean low, boolean high){
 		
-		if(low && dogShifter.get() == ActuatorMap.solenoidForward){
+		if(low && (dogShifter.get() == ActuatorMap.solenoidForward || dogShifter.get() == ActuatorMap.solenoidOff)){
 			dogShifter.set(ActuatorMap.solenoidReverse);
 		}
 		
-		else if(high && dogShifter.get() == ActuatorMap.solenoidReverse){
+		
+		else if(high && (dogShifter.get() == ActuatorMap.solenoidReverse || dogShifter.get() == ActuatorMap.solenoidOff)){
 			dogShifter.set(ActuatorMap.solenoidForward);
 		}
 		

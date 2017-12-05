@@ -64,7 +64,13 @@ public class ControlMap {
 	}
 	
 	public double intake(){
-		return secondary.getRawAxis(IntakeAxis);
+		if(secondary.getRawAxis(IntakeAxis) > .50){
+			return 0.7;
+		} else if(secondary.getRawAxis(IntakeAxis) < -.50) {
+			return -0.7;
+		} else {
+			return 0;
+		}
 	}
 	
 	public boolean doors(){
@@ -77,7 +83,13 @@ public class ControlMap {
 	}
 	
 	public double sliderAxis(){
-		return secondary.getRawAxis(SliderAxis);
+		if(secondary.getRawAxis(SliderAxis) > .50){
+			return 0.7;
+		} else if(secondary.getRawAxis(SliderAxis) < -.50) {
+			return -0.7;
+		} else {
+			return 0;
+		}
 	}
 	
 	

@@ -13,7 +13,7 @@ public class Doors extends Subsystem{
 	DigitalInput rightButton;
 	DigitalInput PressurePlate;
 	int shiftcount;
-	boolean shiftCounted = false;
+	private boolean shiftCounted = false;
 	
 	public Doors() {
 		rightButton = new  DigitalInput(ActuatorMap.sliderRightPort);
@@ -27,13 +27,13 @@ public class Doors extends Subsystem{
 	}
 	
 	public void runDoors(double speed){
-		if(rightButton.get()){
+		if(!rightButton.get()){
 			if (speed < 0 ){
 				DoorSlider.set(speed);
 			} else {
 				DoorSlider.set(0);
 			}
-		} else if(leftButton.get()) {
+		} else if(!leftButton.get()) {
 			if (speed > 0 ){
 				DoorSlider.set(speed);
 			} else {
@@ -74,6 +74,13 @@ public class Doors extends Subsystem{
 		if(!shiftCounted && shift){
 			shiftCounted = true;
 		}
+	}
+	public boolean LeftButton(){
+		return leftButton.get();
+	}
+	public boolean RightButton(){
+		return rightButton.get();
+		
 	}
 	
 
