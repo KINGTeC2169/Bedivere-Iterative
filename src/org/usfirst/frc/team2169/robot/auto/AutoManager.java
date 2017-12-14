@@ -1,4 +1,4 @@
- package org.usfirst.frc.team2169.robot.auto;
+  package org.usfirst.frc.team2169.robot.auto;
 
 import org.usfirst.frc.team2169.robot.Constants;
 import org.usfirst.frc.team2169.robot.auto.modes.BlueCenterAuto;
@@ -7,6 +7,7 @@ import org.usfirst.frc.team2169.robot.auto.modes.BlueRightAuto;
 import org.usfirst.frc.team2169.robot.auto.modes.RedCenterAuto;
 import org.usfirst.frc.team2169.robot.auto.modes.RedLeftAuto;
 import org.usfirst.frc.team2169.robot.auto.modes.RedRightAuto;
+import org.usfirst.frc.team2169.robot.auto.modes.PathfinderSample;
 import org.usfirst.frc.team2169.robot.auto.modes.SelfTest;
 import org.usfirst.frc.team2169.robot.auto.tasks.TestTask;
 
@@ -41,6 +42,7 @@ public class AutoManager {
 		RedCenterAuto rCAuto;
 		RedRightAuto rRAuto;
 		SelfTest selfTest;
+		PathfinderSample pathTest;
 		
 	
 	
@@ -52,7 +54,8 @@ public class AutoManager {
 		modeChooser= new SendableChooser<Integer>();
 		
 		//Alliance Choosers
-		allianceChooser.addDefault("Self-Test", 0);
+		allianceChooser.addDefault("Self-Test", -1);
+		allianceChooser.addObject("Big Jeff", 0);
 		allianceChooser.addObject("Blue Alliance", 1);
 		allianceChooser.addObject("Red Alliance", 2);
 		
@@ -80,7 +83,7 @@ public class AutoManager {
 		
 
 		//Self Test
-		if(alliance == 0) {
+		if(alliance == -1) {
 			
 			
 			selfTest = new SelfTest();
@@ -88,6 +91,16 @@ public class AutoManager {
 			selfTest.start();
 			System.out.println("Auto Complete");
 		}
+		//Computer! Activate big Jeff mode! STAT!
+		if(alliance == 0) {
+			
+			
+			pathTest = new PathfinderSample();
+			autoName = "mynamojeff";
+			pathTest.start();
+			System.out.println("Auto Complete");
+		}
+		
 		
 		//Blue Alliance
 		else if(alliance == 1) {
@@ -217,8 +230,11 @@ public class AutoManager {
 	
 	public void autoLooping() {
 		
-		if(alliance == 0) {
+		if(alliance == -1) {
 			selfTest.looper();
+		}
+		if (alliance == 0){
+			pathTest.looper();
 		}
 		
 		else if(alliance == 1) {

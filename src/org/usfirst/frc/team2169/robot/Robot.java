@@ -103,6 +103,8 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putBoolean("left", doors.LeftButton());
 			SmartDashboard.putBoolean("Right", doors.RightButton());
 			SmartDashboard.putNumber("big", controls.rightThrottle());
+			SmartDashboard.putNumber("Lefty", drive.leftEnc.get());
+			SmartDashboard.putNumber("Righty", drive.rightEnc.get());
 			
 		}
 		catch(Exception e){
