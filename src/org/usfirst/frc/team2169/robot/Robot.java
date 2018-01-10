@@ -68,6 +68,7 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
+		drive.shift(true, false);
 		RobotStates.runningMode = runningMode.AUTO;
 		auto.runAuto();
 		
@@ -105,6 +106,7 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putNumber("big", controls.rightThrottle());
 			SmartDashboard.putNumber("Lefty", drive.leftEnc.get());
 			SmartDashboard.putNumber("Righty", drive.rightEnc.get());
+			SmartDashboard.putNumber("Gyrey", superstructure.ahrs.getAngle());
 			
 		}
 		catch(Exception e){

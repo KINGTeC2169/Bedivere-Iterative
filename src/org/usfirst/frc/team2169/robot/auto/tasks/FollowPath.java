@@ -1,45 +1,22 @@
-
 package org.usfirst.frc.team2169.robot.auto.tasks;
-import com.kauailabs.navx.frc.AHRS;
-import edu.wpi.first.wpilibj.Encoder;
 
-import org.usfirst.frc.team2169.pathfinder.PathfinderObject;
-import org.usfirst.frc.team2169.pathfinder.Waypoint;
+import org.usfirst.frc.team2169.util.PathfinderObject;
+import jaci.pathfinder.Waypoint;
 
 import com.ctre.CANTalon;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class FollowPath extends Command {
-	boolean sepEnc;
+
 	PathfinderObject path;
-	CANTalon left;
-	CANTalon right;
-	AHRS gyro;
-	Encoder rightEnc;
-	Encoder leftEnc;
 	
-	
-    public FollowPath(Waypoint[] points, CANTalon left_, CANTalon right_, AHRS gyro_) {
+    public FollowPath(Waypoint[] points, CANTalon left_, CANTalon right_, AHRS gyro_, Encoder _leftEnc, Encoder _rightEnc) {
     
-    	path = new PathfinderObject(points);
-    	left = left_;
-    	right = right_;
-    	gyro = gyro_;
-    	
-    	DriverStation.reportWarning("Path Created", false);
-    }
-    public FollowPath(Waypoint[] points, CANTalon left_, CANTalon right_, AHRS gyro_, Encoder leftEncoder, Encoder rightEncoder) {
-        sepEnc = true;
-        
-    	rightEnc = rightEncoder;
-    	leftEnc = leftEncoder;
-    	path = new PathfinderObject(points, leftEncoder, leftEncoder);
-    	left = left_;
-    	right = right_;
-    	gyro = gyro_;
+    	path = new PathfinderObject(points, left_, right_, gyro_, _leftEnc, _rightEnc);
     	
     	DriverStation.reportWarning("Path Created", false);
     }
@@ -47,15 +24,14 @@ public class FollowPath extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	path.calculatePath(left, right);
+    	path.calculatePath();
     	DriverStation.reportWarning("Path Calculated", false);
     		
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	path.pathfinderLooper(left, right, gyro);
+    	path.pathfinderLooper();
     	
     }
 

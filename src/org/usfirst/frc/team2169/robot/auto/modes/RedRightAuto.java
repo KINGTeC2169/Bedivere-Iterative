@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RedRightAuto extends CommandGroup {
 	
+	//
+	
 	int selectedAuto;
 	TestTask task;
 	int i = 0;
