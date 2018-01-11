@@ -30,7 +30,7 @@ public class PathfinderSample extends CommandGroup {
     public PathfinderSample() {
     	
    
-    	follow = new FollowPath(Paths.example, DriveTrain.left1, DriveTrain.right1, Superstructure.ahrs, DriveTrain.rightEnc, DriveTrain.leftEnc);
+    	follow = new FollowPath(Paths.example2, DriveTrain.left1, DriveTrain.right1, Superstructure.ahrs, DriveTrain.rightEnc, DriveTrain.leftEnc);
     	if(selectedAuto == 0) {
     		
     		

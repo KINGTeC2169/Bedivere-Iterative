@@ -9,18 +9,19 @@ public class Constants {
 		//Contants go here
 		
 		//In Meters
-		public static final double wheelBaseWidth = 5;
+		public static final double wheelBaseWidth =  16.5;
+		public static final double wheelBaseLength = 22;
 		public static final double wheelDiameter = 4.125;
 		
-		public static final int ticksPerRotation = 144;
+		public static final int ticksPerRotation = 128;
 
 		
 		//Pathfinder
 		
 		public static final double timeStep= 0.05; //Seconds
-		public static final double maxVelocity = 1.7; //m/s
-		public static final double maxAcceleration = 2.0;  //m/s/s
-		public static final double maxJerk = 60.0; //m/s/s/s
+		public static final double maxVelocity = 50; //m/s
+		public static final double maxAcceleration = 3.0;  //m/s/s
+		public static final double maxJerk = .8; //m/s/s/s
 		
 		//Pathfinder PID
 		
@@ -33,11 +34,11 @@ public class Constants {
 		//   trajectory configuration (it translates m/s to a -1 to 1 scale that your motors can read)
 		// The fifth argument is your acceleration gain. Tweak this if you want to get to a higher or lower speed quicker
 
-		public static final double accelerationGain = 0;
-		public static final double pathfinderP = 0.001;
+		public static final double accelerationGain = 0.1;
+		public static final double pathfinderP = 1;
 		public static final double pathfinderI = 0;
 		public static final double pathfinderD = 0;
-		public static final double pathfinderVR = 0;
+		public static final double pathfinderVR = 1;
 		
 	
 

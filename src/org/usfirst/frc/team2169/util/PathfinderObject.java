@@ -38,8 +38,9 @@ public class PathfinderObject {
 	EncoderFollower rightFollower;
 	
 	public void calculatePath() {
-		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH,
+		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,
 			Constants.timeStep, Constants.maxVelocity, Constants.maxAcceleration, Constants.maxJerk);
+
  
 	// Generate the trajectory
 	Trajectory trajectory = Pathfinder.generate(points, config);
@@ -70,6 +71,7 @@ public class PathfinderObject {
 	public void pathfinderLooper() {
 		double l = leftFollower.calculate(leftenc.get());
 		double r = rightFollower.calculate(rightenc.get());
+		
 
 		double gyro_heading = gyro.getAngle();    // Assuming the gyro is giving a value in degrees
 		double desired_heading = Pathfinder.r2d(leftFollower.getHeading());  // Should also be in degrees
@@ -89,7 +91,8 @@ public class PathfinderObject {
 		
 		//Return if trajectories are both finished
 		if(leftFollower.isFinished() && rightFollower.isFinished()) {
-			
+			leftTalon.set(0);
+			rightTalon.set(0);
 			isFinished = true;
 		
 		}
@@ -107,7 +110,7 @@ public class PathfinderObject {
 			double l = leftFollower.calculate(leftEnc);
 			double r = rightFollower.calculate(rightEnc);
 
-			double gyro_heading = gyro.getYaw();    // Assuming the gyro is giving a value in degrees
+			double gyro_heading = gyro.getAngle();    // Assuming the gyro is giving a value in degrees
 			double desired_heading = Pathfinder.r2d(leftFollower.getHeading());  // Should also be in degrees
 
 			double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
@@ -128,6 +131,9 @@ public class PathfinderObject {
 				
 				isFinished = true;
 			
+			}
+			else {
+				isFinished = false;
 			}
 	}
 	

@@ -52,6 +52,7 @@ public class Robot extends IterativeRobot {
 			doors = new Doors();
 			auto = new AutoManager();
 			
+			superstructure.ahrs.reset();
 			superstructure.startCompressor();
 			intakes.pancakes(true);
 			
@@ -68,7 +69,10 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void autonomousInit() {
+		drive.leftEnc.reset();
+		drive.rightEnc.reset();
 		drive.shift(true, false);
+		superstructure.ahrs.reset();
 		RobotStates.runningMode = runningMode.AUTO;
 		auto.runAuto();
 		

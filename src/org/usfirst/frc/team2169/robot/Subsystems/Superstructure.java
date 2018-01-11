@@ -13,6 +13,10 @@ public class Superstructure {
 		compressor = new Compressor(ActuatorMap.compressorPort);
 	}
 
+	public double gyroAngle(){
+		return ahrs.getYaw();
+	}
+	
 	public void startCompressor(){
 		compressor.start();
 		
